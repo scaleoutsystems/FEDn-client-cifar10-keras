@@ -74,12 +74,18 @@ if __name__ == '__main__':
         except yaml.YAMLError as e:
             raise (e)
 
+    with open('client_settings.yaml', 'r') as fh:
+        try:
+            client_settings = dict(yaml.safe_load(fh))
+        except yaml.YAMLError as e:
+            raise (e)
+
     from fedn.utils.kerasweights import KerasWeightsHelper
 
     helper = KerasWeightsHelper()
     weights = helper.load_model(sys.argv[1])
 
-    model = VGG(dimension='VGG11')
+    model = VGG(dimension=settings['model_dimension'])
     opt = keras.optimizers.Adam(learning_rate=0.001)
     model.compile(loss='categorical_crossentropy',
                   optimizer=opt,
