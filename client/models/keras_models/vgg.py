@@ -1,9 +1,9 @@
 '''VGG11/13/16/19 in keras.'''
-import keras
-from keras.layers import Conv2D, MaxPooling2D, AveragePooling2D, Activation
-from keras.layers import Dense, BatchNormalization, Flatten, Input
-from keras.models import Sequential
-from keras import activations
+import tensorflow.keras as keras
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, AveragePooling2D, Activation
+from tensorflow.keras.layers import Dense, BatchNormalization, Flatten, Input
+from tensorflow.keras.models import Sequential
+from tensorflow.keras import activations
 
 
 cfg = {
@@ -34,6 +34,3 @@ def VGG(input_shape=(32,32,3), dimension='VGG16'):
     model.add(Dense(num_classes, activation='softmax'))
 
     return model
-
-
-
