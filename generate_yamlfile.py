@@ -19,7 +19,7 @@ def generate_yamlfile(nr_of_clients=2, use_nvidia=True, add_network=True):
     dict_file = {'version': '3.3', 'services': clients}
 
     if add_network:
-        dict_file['networks'] = {'defaults': {'external': {'name': 'fedn_default'}}}
+        dict_file['networks'] = {'default': {'external': {'name': 'fedn_default'}}}
 
     with open(r'docker-compose-' + str(nr_of_clients) + 'clients.yaml', 'w') as file:
         documents = yaml.dump(dict_file, file)
