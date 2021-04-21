@@ -4,7 +4,6 @@ import numpy as np
 import pickle
 import sys
 import os
-# load dataset
 
 def partition_dataset(data, nr_of_splits):
     ind = np.arange(len(data[0]))
