@@ -35,7 +35,7 @@ if __name__ == '__main__':
         except yaml.YAMLError as e:
             raise(e)
 
-    with open('client_settings.yaml', 'r') as fh:
+    with open('/app/client_settings.yaml', 'r') as fh:
         try:
             client_settings = dict(yaml.safe_load(fh))
         except yaml.YAMLError as e:
