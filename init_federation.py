@@ -11,7 +11,7 @@ if __name__ == '__main__':
     # Generate docker-compose.yaml
     generate_yamlfile(nr_of_clients=nr_of_clients, use_nvidia=True, add_network=True)
     # Generate seed model
-    with open('client_settings.yaml', 'r') as fh:
+    with open('client/settings.yaml', 'r') as fh:
         try:
             settings = dict(yaml.safe_load(fh))
         except yaml.YAMLError as e:
