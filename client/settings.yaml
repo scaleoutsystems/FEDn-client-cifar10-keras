@@ -8,3 +8,6 @@ epochs: 1
 #Device settings
 device: cuda
 val_device: cuda
+
+# VGG dimension
+model_dimension: 'VGG11'
