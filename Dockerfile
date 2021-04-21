@@ -7,6 +7,7 @@ FROM scaleoutsystems/fedn-client:develop
 
 COPY fedn-network.yaml /app/
 COPY requirements.txt /app/
+COPY client_settings.yaml /app/
 #COPY hello.py /app/
 #COPY client /app/
 WORKDIR /app
