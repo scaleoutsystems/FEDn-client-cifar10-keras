@@ -9,6 +9,9 @@ def generate_seed_model(model_dimension='VGG11'):
 	outfile_name = 'seed/' + model_dimension + '_keras.npz'
 	weights = model.get_weights()
 	helper = KerasHelper()
+
+	if not os.path.exists('seed'):
+		os.makedirs('seed')
 	helper.save_model(weights, outfile_name)
 
 
