@@ -12,7 +12,7 @@ def generate_yamlfile(nr_of_clients=2, use_nvidia=True, add_network=True):
 
         if use_nvidia:
             client['runtime'] = 'nvidia'
-        client['command'] = '/bin/bash - c "fedn run client -in fedn-network.yaml"'
+        client['command'] = '/bin/bash -c "fedn run client -in fedn-network.yaml"'
         client['volumes'] = ['./data/' + str(nr_of_clients) + 'clients/client' + str(i) + ':/app/data']
         clients['client'+str(i)] = client
 
