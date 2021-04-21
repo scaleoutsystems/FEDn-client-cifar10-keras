@@ -80,9 +80,9 @@ if __name__ == '__main__':
         except yaml.YAMLError as e:
             raise (e)
 
-    from fedn.utils.kerasweights import KerasWeightsHelper
+    from fedn.utils.kerashelper import KerasHelper
 
-    helper = KerasWeightsHelper()
+    helper = KerasHelper()
     weights = helper.load_model(sys.argv[1])
 
     model = VGG(dimension=settings['model_dimension'])

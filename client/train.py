@@ -43,12 +43,12 @@ if __name__ == '__main__':
 
     from models.keras_models.vgg import VGG
 
-    from fedn.utils.kerasweights import KerasWeightsHelper
+    from fedn.utils.kerashelper import KerasHelper
     import tensorflow as tf
     gpu = len(tf.config.list_physical_devices('GPU')) > 0
     print("GPU is", "available" if gpu else "NOT AVAILABLE")
 
-    helper = KerasWeightsHelper()
+    helper = KerasHelper()
     weights = helper.load_model(sys.argv[1])
     model = VGG(dimension=settings['model_dimension'])
     opt = keras.optimizers.Adam(learning_rate=0.001)
