@@ -1,5 +1,5 @@
 from client.models.keras_models.vgg import VGG
-from fedn.utils.kerasweights import KerasWeightsHelper
+from fedn.utils.kerashelper import KerasHelper
 
 import numpy as np
 
@@ -8,7 +8,7 @@ def generate_seed_model(model_dimension='VGG11'):
 	model = VGG(dimension=model_dimension)
 	outfile_name = 'seed/' + model_dimension + '_keras.npz'
 	weights = model.get_weights()
-	helper = KerasWeightsHelper()
+	helper = KerasHelper()
 	helper.save_model(weights, outfile_name)
 
 
