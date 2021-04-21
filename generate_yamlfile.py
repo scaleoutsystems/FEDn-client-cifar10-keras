@@ -6,9 +6,9 @@ def generate_yamlfile(nr_of_clients=2, use_nvidia=True, add_network=True):
     for i in range(nr_of_clients):
 
         client = {'environment': ['GET_HOSTS_FROM=dns'],
-                  'image': 'keras-cifar-client:latest',
+                  'image': '"keras-cifar-client:latest"',
                   'build': {'context': '.'},
-                  'working_dir': '/ app'}
+                  'working_dir': '/app'}
 
         if use_nvidia:
             client['runtime'] = 'nvidia'
