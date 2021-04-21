@@ -1,7 +1,8 @@
+import numpy as np
+import os
 from client.models.keras_models.vgg import VGG
 from fedn.utils.kerashelper import KerasHelper
 
-import numpy as np
 
 def generate_seed_model(model_dimension='VGG11'):
 
