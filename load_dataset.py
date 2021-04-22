@@ -5,14 +5,19 @@ import pickle
 import sys
 import os
 
+
 def partition_dataset(data, nr_of_splits):
+
+    print("len data[0]: ", len(data[0]))
+    print("len data: ", len(data))
+
     ind = np.arange(len(data[0]))
     np.random.shuffle(ind)
 
     p = np.int32(np.linspace(0, len(ind), nr_of_splits + 1))
     data_pack = []
     for d in data:
-        data_pack += [d[ind[p[i]:p[i + 1]]] for i in range(nr_of_splits)]
+        data_pack += [[d[ind[p[i]:p[i + 1]]] for i in range(nr_of_splits)]]
     return data_pack
 
 
@@ -32,32 +37,35 @@ def load_dataset(path='data', nr_of_splits=1):
 
     partition_name = str(nr_of_splits) + "clients"
 
+    partition_path = os.path.join(path, partition_name)
+    print("partition_path: ", partition_path)
+    if not os.path.exists(partition_path):
+        os.mkdir(partition_path)
+
     if nr_of_splits > 1:
         train_pack = partition_dataset([trainX, trainy], nr_of_splits)
         test_pack = partition_dataset([testX, testy], nr_of_splits)
-
-        partition_path = os.path.join(path, partition_name)
-        print("partition_path: ", partition_path)
-        if not os.path.exists(partition_path):
-            os.mkdir(partition_path)
 
         for client in range(nr_of_splits):
             client_name = "client" + str(client)
             client_path = os.path.join(partition_path, client_name)
             if not os.path.exists(client_path):
                 os.mkdir(client_path)
-
             pickle.dump(train_pack[0][client], open(os.path.join(client_path, "trainx.pyp"), "wb"))
             pickle.dump(train_pack[1][client], open(os.path.join(client_path, "trainy.pyp"), "wb"))
             pickle.dump(test_pack[0][client], open(os.path.join(client_path, "testx.pyp"), "wb"))
             pickle.dump(test_pack[1][client], open(os.path.join(client_path, "testy.pyp"), "wb"))
 
     else:
+        client_name = "client" + str(0)
+        client_path = os.path.join(partition_path, client_name)
+        if not os.path.exists(client_path):
+            os.mkdir(client_path)
+        pickle.dump(trainX, open(os.path.join(client_path, "trainx.pyp"), "wb"))
+        pickle.dump(trainy, open(os.path.join(client_path, "trainy.pyp"), "wb"))
+        pickle.dump(testX, open(os.path.join(client_path, "testx.pyp"), "wb"))
+        pickle.dump(testy, open(os.path.join(client_path, "testy.pyp"), "wb"))
 
-        pickle.dump(trainX, open(os.path.join(path, "trainx.pyp"), "wb"))
-        pickle.dump(trainy, open(os.path.join(path, "trainy.pyp"), "wb"))
-        pickle.dump(testX, open(os.path.join(path, "testx.pyp"), "wb"))
-        pickle.dump(testy, open(os.path.join(path, "testy.pyp"), "wb"))
 
 if __name__ == '__main__':
 
